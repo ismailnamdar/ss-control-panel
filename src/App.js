@@ -1,25 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
+import {Provider} from "react-redux";
 import './App.css';
+import store from "./redux/store";
+import AppRouter from "./ui/views/AppRouter";
+import { ThemeProvider } from "styled-components";
+
+const theme = {
+  primaryColor: {
+    dark: "#00334e",
+    light: "#145374",
+  },
+  secondaryColor: {
+    dark: "#5588a3",
+    light: "#e8e8e8",
+  },
+  textColor: {
+    dark: "#a5a5a5",
+    light: "#f1f1f1"
+  }
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <AppRouter/>
+      </ThemeProvider>
+    </Provider>
   );
 }
 
